@@ -143,15 +143,15 @@ body {
 
 /* Features Section */
 .features {
-    padding: 6rem 2rem;
+    padding: 4rem 1rem; /* Reduced padding on mobile */
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
 }
 
 .features h2 {
+    font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
+    margin-bottom: clamp(2rem, 5vw, 4rem);
     text-align: center;
-    font-size: 3rem;
-    margin-bottom: 4rem;
     transform: translateY(20px);
     opacity: 0;
     animation: fadeInUp 1s ease forwards 0.3s;
@@ -159,15 +159,17 @@ body {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: clamp(1.5rem, 3vw, 3rem);
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .feature-card {
     background: white;
-    padding: 2rem;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    width: 100%;
     border-radius: 20px;
     text-align: center;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -201,11 +203,11 @@ body {
 }
 
 .feature-card img {
-    width: 180px;
-    height: 180px;
+    width: clamp(140px, 50vw, 180px);
+    height: clamp(140px, 50vw, 180px);
     object-fit: cover;
     border-radius: 12px;
-    margin-bottom: 1.5rem;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -214,18 +216,20 @@ body {
 }
 
 .feature-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    margin-bottom: clamp(0.75rem, 2vw, 1rem);
     color: #000;
     position: relative;
     z-index: 2;
 }
 
 .feature-card p {
+    font-size: clamp(0.9rem, 3vw, 1rem);
     color: #666;
     line-height: 1.6;
     position: relative;
     z-index: 2;
+    padding: 0 0.5rem;
 }
 
 /* Stagger animation for cards */
@@ -352,6 +356,79 @@ html {
 
     .phone-screen {
         width: 230px;
+    }
+
+    .features {
+        padding: 3rem 1rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        max-width: 500px; /* Limit width on mobile */
+    }
+
+    .feature-card {
+        transform: none !important; /* Disable hover transform on mobile */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-card:hover {
+        transform: none !important; /* Disable hover effect on mobile */
+    }
+
+    /* Adjust animation timing for better mobile performance */
+    .feature-card:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .feature-card:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+
+    .feature-card:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .phone-stack {
+        height: 400px;
+        width: 200px;
+    }
+
+    .phone-screen {
+        width: 180px;
+    }
+
+    .features {
+        padding: 2rem 0.5rem;
+    }
+
+    .feature-card {
+        padding: 1.25rem;
+        border-radius: 16px;
+    }
+
+    .feature-card img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .feature-card:hover {
+        transform: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-card:hover img {
+        transform: none;
+    }
+
+    .feature-card::before {
+        display: none;
     }
 }
 
